@@ -1,0 +1,53 @@
+# Node.js dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Test coverage directory (e.g., Istanbul)
+coverage/
+
+# Grunt intermediate storage (if used)
+.grunt/
+
+# Bower components (if used)
+bower_components/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Environment variables and local configuration
+.env
+
+# NPM cache
+.npm/
+
+# ESLint cache
+.eslintcache
+
+# IDE and editor files/folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Temporary files
+*.tmp
+*.bak
