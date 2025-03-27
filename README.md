@@ -30,36 +30,39 @@ Built for local development with Kubernetes (Minikube), GitHub Actions, and Dock
 
 1. **Clone the repo:**
 
-   
-   git clone git@github.com:ivensfernando/trading-webhook.git  
+   ```markdown  
+    git clone git@github.com:ivensfernando/trading-webhook.git  
    cd trading-webhook
+   ```
 
 2. **Install dependencies & tools:**
 
-   
+   ```markdown  
    make install-tools
-
+   ```
 3. **Start Minikube, build and deploy:**
 
-   
+   ```markdown  
    make setup
-
+   ```
 4. **Enable ingress and expose the app:**
 
-   
+   ```markdown  
    make ingress
-
+    ```
+   
 5. **Add to /etc/hosts:**
 
-   
+   ```markdown  
    192.168.49.2 webhook.local
 
    Replace `192.168.49.2` with your actual Minikube IP.
+   ```
 
 6. **Access the app:**
-
+   ```markdown 
    http://webhook.local/health
-
+   ```
 ---
 
 ## 🧪 Health Checks
