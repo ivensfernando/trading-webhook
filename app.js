@@ -44,5 +44,5 @@ app.use(function (err, req, res) {
   res.status(err.status || 500);
   res.render('error');
 });
-console.log('[DEBUG] PGPASSWORD:', typeof process.env.PGPASSWORD, process.env.PGPASSWORD);
+// console.log('[DEBUG] PGPASSWORD:', typeof process.env.PGPASSWORD, process.env.PGPASSWORD);
 export default app;

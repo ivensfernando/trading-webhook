@@ -14,7 +14,7 @@ const pool = new Pool({
 
 (async () => {
   try {
-      console.log('[DEBUG] PGPASSWORD:', typeof process.env.PGPASSWORD, process.env.PGPASSWORD);
+      // console.log('[DEBUG] PGPASSWORD:', typeof process.env.PGPASSWORD, process.env.PGPASSWORD);
     const res = await pool.query('SELECT NOW()');
     console.log('✅ DB Time1:', res.rows[0].now);
     await pool.end();
