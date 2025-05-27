@@ -28,27 +28,72 @@ router.post('/webhook',  async function (req, res) {
 
   const alertName = body.alert_name || 'BTC_CU';
 
+  if (!body || Object.keys(body).length === 0) {
+    console.warn('❌ Received empty body');
+    return res.status(400).send('Invalid or missing JSON body');
+  }
+
+  const {
+    alert_name,
+    event,
+    symbol,
+    exchange,
+    interval,
+    alert_time,
+    server_time,
+    open,
+    close,
+    high,
+    low,
+    volume,
+    currency,
+    base_currency,
+    plot,
+    strategy_description
+  } = body;
+
+
   try {
     await db.query(
-        `INSERT INTO alerts (alert_name, body)
-       VALUES ($1, $2)`,
-        [alertName, body]
+        `INSERT INTO alerts (
+          alert_name, event, symbol, exchange, interval,
+          alert_time, server_time, open, close, high, low, volume,
+          currency, base_currency, plot, description, received_at, body
+        )
+         VALUES (
+                  $1, $2, $3, $4, $5,
+                  $6, $7, $8, $9, $10, $11, $12,
+                  $13, $14, $15, $16, NOW(), $17
+                )`,
+        [
+          alert_name || 'unknown',
+          event,
+          symbol,
+          exchange,
+          interval,
+          alert_time ? new Date(alert_time) : null,
+          server_time ? new Date(server_time) : null,
+          open,
+          close,
+          high,
+          low,
+          volume,
+          currency,
+          base_currency,
+          plot,
+          strategy_description,
+          body // save raw JSON
+        ]
     );
 
-    console.log('✅ Alert received and saved:', alertName);
+    console.log(`✅ Alert saved: ${alert_name}`);
     res.status(200).send('Alert received and saved');
   } catch (err) {
     console.error('❌ Error saving alert:', err);
-    res.status(500).send('Error saving alert');
+    if (!res.headersSent) {
+      res.status(500).send('Error saving alert');
+    }
   }
-
-  // You can do something with the alertData here, like:
-  // - Save it to a database
-  // - Trigger a trade
-  // - Forward to another API
-  // - Send a notification
-
-  res.status(200).send('Alert received');
 });
 
 export default router;
